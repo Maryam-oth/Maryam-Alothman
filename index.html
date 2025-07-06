@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Academy</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-left">
+                <h1> Sign Language Academy</h1>
+            </div>
+            <div class="header-right">
+                <!-- Academy Logo/Icon -->
+                <div class="academy-logo">
+                    <svg class="h-6 w-6 text-gray-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span>Hands Speak</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content" style="display: flex; flex-direction: row; gap: 32px;">
+            <!-- Sidebar / Course Menu -->
+            <aside class="sidebar">
+                <div class="course-menu-card">
+                    <div class="course-menu-title">
+                        <span class="menu-title">COURSE MENU</span>
+                        <button id="sidebar-lock-btn" style="background:none; border:none; cursor:pointer; margin-left:6px; font-size:1.1em; vertical-align:middle;">
+                            <span id="sidebar-lock-icon">▼</span>
+                        </button>
+                    </div>
+                    <hr class="menu-divider">
+                    <ul class="course-menu-list">
+                        <li class="course-menu-folder sl-basics-folder expanded">
+                            <div class="folder-row">
+                                <span class="folder-icon">✋</span> <span class="folder-title">SL Basics</span>
+                            </div>
+                            <ul class="submenu">
+                                <li><a href="#" class="submenu-link show-video" data-video="1">Basics Part 1</a></li>
+                                <li><a href="#" class="submenu-link show-video" data-video="2">Basics Part 2</a></li>
+                                <li><a href="#" class="submenu-link show-quiz" data-quiz="1">Quiz 1</a></li>
+                            </ul>
+                        </li>
+                        <li class="course-menu-folder sl-advanced-folder expanded">
+                            <div class="folder-row">
+                                <span class="folder-icon">🤟</span> <span class="folder-title">SL Advanced</span>
+                            </div>
+                            <ul class="submenu">
+                                <li><a href="#" class="submenu-link show-video" data-video="adv1">Advanced Part 1</a></li>
+                                <li><a href="#" class="submenu-link show-video" data-video="adv2">Advanced Part 2</a></li>
+                                <li><a href="#" class="submenu-link show-quiz" data-quiz="2">Quiz 2</a></li>
+                            </ul>
+                        </li>
+                        <li class="course-menu-location"><span class="location-icon">📍</span> Location</li>
+                    </ul>
+                </div>
+            </aside>
+            <!-- Main Content Display -->
+            <section class="content-display">
+                <div class="welcome-wrapper">
+                    <div class="hero-section">
+                        <div class="info-section">
+                              <h3>Welcome to the Sign Language Academy!</h3>
+                    <!-- CHANGE START: Added Welcome.jpg image -->
+                    <img src="images/Welcome.jpg" alt="Welcome to Sign Language Academy" class="welcome-image">
+                    <!-- CHANGE END -->
+                       
+                        </div>
+
+                        <div class="info-section">
+                            <p>
+                                Our academy is dedicated to teaching American Sign Language (ASL) and fostering a vibrant community of learners.
+                                Whether you're a complete beginner or looking to refine your skills, our comprehensive courses are designed to
+                                guide you through every step of your sign language journey.
+                            </p>
+                            <p>
+                                We believe that learning sign language opens up a new world of communication and connection. Our curriculum
+                                is structured to be engaging and effective, with interactive lessons, practical exercises, and quizzes to
+                                reinforce your understanding. Join us and become part of a movement that celebrates inclusivity and communication!
+                            </p>
+                            <p>
+                                Explore our course menu on the left to get started. From basic greetings to complex conversations, we cover
+                                all aspects of ASL. Don't forget to test your knowledge with our quizzes!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video Box: Only shown when triggered by JS -->
+                <div id="video-box-1" class="video-box" style="display:none;">
+                    <button class="close-video" style="float:right; font-size:1.3rem; background:none; border:none; cursor:pointer;">&times;</button>
+                    <h2 style="text-align:center; margin-bottom:18px; font-size:2rem; color:#2c3e50; font-weight:700;">Basics 1 - Video Lesson</h2>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/IzOQ1H1_rd8" title="Basics 1" frameborder="0" allowfullscreen></iframe>
+                    <button class="continue-btn" data-next="2" style="margin-top: 24px; padding: 8px 28px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-size: 1rem; font-weight: 600; cursor: pointer;">Continue</button>
+                </div>
+                <div id="video-box-2" class="video-box" style="display:none;">
+                    <button class="close-video" style="float:right; font-size:1.3rem; background:none; border:none; cursor:pointer;">&times;</button>
+                    <h2 style="text-align:center; margin-bottom:18px; font-size:2rem; color:#2c3e50; font-weight:700;">Basics 2 - Video Lesson</h2>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/rn3ezXyHE18" title="Basics 2" frameborder="0" allowfullscreen></iframe>
+                    <button class="continue-btn" data-next="quiz" style="margin-top: 24px; padding: 8px 28px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-size: 1rem; font-weight: 600; cursor: pointer;">Continue</button>
+                </div>
+                <div id="quiz-box-1" class="quiz-box" style="display:none;">
+                    <button class="close-quiz" style="float:right; font-size:1.3rem; background:none; border:none; cursor:pointer;">&times;</button>
+                    <h2 style="text-align:center; margin-bottom:18px; font-size:2rem; color:#2c3e50; font-weight:700;"> Quiz 1</h2>
+                    <div style="margin-bottom: 18px; font-size: 1.15rem; font-weight: 500;">How do you say "Hello" in American Sign Language (ASL)?</div>
+                    <form id="quiz1-form" style="margin-bottom: 18px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+                        <label><input type="radio" name="quiz1" value="A"><span> A) Wave both hands up and down</span></label>
+                        <label><input type="radio" name="quiz1" value="B"><span> B) Place your hand on your chest</span></label>
+                        <label><input type="radio" name="quiz1" value="C"><span> C) Salute by bringing your hand from your forehead outward</span></label>
+                        <label><input type="radio" name="quiz1" value="D"><span> D) Cross your arms over your chest</span></label>
+                        <button type="submit" style="margin-top: 12px; padding: 7px 22px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-size: 1rem; font-weight: 600; cursor: pointer;">Submit</button>
+                    </form>
+                    <button class="continue-btn" data-next="adv1" style="margin-top: 10px; padding: 8px 28px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-size: 1rem; font-weight: 600; cursor: pointer;">Continue</button>
+                </div>
+                <div id="quiz1-popup" class="quiz-popup" style="display:none;">
+                    <div class="quiz-popup-content">
+                        <button class="close-quiz-popup" style="float:right; font-size:1.3rem; background:none; border:none; cursor:pointer;">&times;</button>
+                        <div id="quiz1-popup-message" style="font-size: 1.15rem; font-weight: 600; text-align:center;"></div>
+                    </div>
+                </div>
+                <div id="location-box" class="location-box" style="display:none;">
+                    <button class="close-location" style="float:right; font-size:1.3rem; background:none; border:none; cursor:pointer;">&times;</button>
+                    <h2 style="text-align:center; margin-bottom:18px; font-size:2rem; color:#2c3e50; font-weight:700;">SL Academy Locations in Saudi Arabia</h2>
+                    <div class="location-filters" style="display:flex; gap:16px; justify-content:center; margin-bottom:18px;">
+                        <button class="location-filter-btn kids-btn"><span class="filter-icon">🧒</span> Kids</button>
+                        <button class="location-filter-btn expert-btn"><span class="filter-icon">👨‍🎓</span> Adults </button>
+                        <button class="location-filter-btn all-btn"><span class="filter-icon">🌍</span> Show All</button>
+                        <button class="location-filter-btn clear-btn"><span class="filter-icon">🗑️</span> Clear</button>
+                    </div>
+                    <div id="leaflet-map" style="width:100%; height:400px; max-width:600px; margin:auto; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.10);"></div>
+                    <button id="location-continue-btn" class="continue-btn" style="margin-top: 24px; padding: 8px 28px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-size: 1rem; font-weight: 600; cursor: pointer; display: block; margin-left: auto; margin-right: auto;">Continue</button>
+                </div>
+                <div id="video-box-adv1" class="video-box" style="display:none;">
+                    <button class="close-video" style="float:right; font-size:1.3rem; background:none; border:none; cursor:pointer;">&times;</button>
+                    <h2 style="text-align:center; margin-bottom:18px; font-size:2rem; color:#2c3e50; font-weight:700;">Advanced 1 - Video Lesson</h2>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ryndFhgetjg" title="Advanced 1" frameborder="0" allowfullscreen></iframe>
+                    <button class="continue-btn" data-next="adv2" style="margin-top: 24px; padding: 8px 28px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-size: 1rem; font-weight: 600; cursor: pointer;">Continue</button>
+                </div>
+                <div id="video-box-adv2" class="video-box" style="display:none;">
+                    <button class="close-video" style="float:right; font-size:1.3rem; background:none; border:none; cursor:pointer;">&times;</button>
+                    <h2 style="text-align:center; margin-bottom:18px; font-size:2rem; color:#2c3e50; font-weight:700;">Advanced 2 - Video Lesson</h2>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/MynzxdkfxfE" title="Advanced 2" frameborder="0" allowfullscreen></iframe>
+                    <button class="continue-btn" data-next="welcome" style="margin-top: 24px; padding: 8px 28px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-size: 1rem; font-weight: 600; cursor: pointer;">Continue</button>
+                </div>
+                <div id="quiz-box-2" class="quiz-box" style="display:none;">
+                    <button class="close-quiz" style="float:right; font-size:1.3rem; background:none; border:none; cursor:pointer;">&times;</button>
+                    <h2 style="text-align:center; margin-bottom:18px; font-size:2rem; color:#2c3e50; font-weight:700;">Quiz 2</h2>
+                    <div style="margin-bottom: 18px; font-size: 1.15rem; font-weight: 500;">What is the correct ASL sign for the word "responsibility"?</div>
+                    <form id="quiz2-form" style="margin-bottom: 18px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+                        <label><input type="radio" name="quiz2" value="A"><span> A) Place both hands in a fist on your hips</span></label>
+                        <label><input type="radio" name="quiz2" value="B"><span> B) Tap the back of your dominant hand on your shoulder twice with a bent 'B' handshape</span></label>
+                        <label><input type="radio" name="quiz2" value="C"><span> C) Cross your arms over your chest and nod</span></label>
+                        <label><input type="radio" name="quiz2" value="D"><span> D) Make an open '5' hand and move it forward in a pushing motion</span></label>
+                        <button type="submit" style="margin-top: 12px; padding: 7px 22px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-size: 1rem; font-weight: 600; cursor: pointer;">Submit</button>
+                    </form>
+                    <button class="continue-btn" data-next="location" style="margin-top: 10px; padding: 8px 28px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-size: 1rem; font-weight: 600; cursor: pointer;">Continue</button>
+                </div>
+                <div id="quiz2-popup" class="quiz-popup" style="display:none;">
+                    <div class="quiz-popup-content">
+                        <button class="close-quiz-popup" style="float:right; font-size:1.3rem; background:none; border:none; cursor:pointer;">&times;</button>
+                        <div id="quiz2-popup-message" style="font-size: 1.15rem; font-weight: 600; text-align:center;"></div>
+                    </div>
+                </div>
+                <div id="certificate-box" class="certificate-box" style="display:none; text-align:center; padding:40px 20px; background:#fff; border-radius:16px; box-shadow:0 2px 16px rgba(0,0,0,0.10); max-width:500px; margin:40px auto;">
+                    <h2 style="color:#2563eb; font-size:2.2rem; margin-bottom:18px;">🎉 Congratulations!</h2>
+                    <p style="font-size:1.2rem; margin-bottom:24px;">You have completed the Sign Language Academy course.<br>Here is your certificate of achievement:</p>
+                    <div style="border:2px solid #2563eb; border-radius:12px; padding:24px; background:#f8fafc; margin-bottom:24px;">
+                        <h3 style="color:#2c3e50; font-size:1.5rem; margin-bottom:10px;">Certificate of Completion</h3>
+                        <p style="font-size:1.1rem;">Awarded to:</p>
+                        <p style="font-size:1.3rem; font-weight:600; margin:10px 0;">[Your Name]</p>
+                        <p style="font-size:1.1rem;">For successfully completing the course<br><span style="color:#2563eb; font-weight:600;">Sign Language Academy</span></p>
+                    </div>
+                    <button class="close-certificate" style="padding:8px 28px; border-radius:6px; background:#2563eb; color:#fff; border:none; font-size:1rem; font-weight:600; cursor:pointer;">Close</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Link to the external JavaScript file -->
+    <script src="js/script.js"></script>
+</body>
+</html>
